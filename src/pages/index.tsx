@@ -12,14 +12,9 @@ import Lenis from "@studio-freight/lenis";
 // import ScrollContextProvider from "@/utils/ScrollContext";
 
 export default function Home() {
-  
   return (
     <>
-      {/* <ScrollContextProvider> */}
-      {/* <YProgressProvider> */}
-        <FirstPage />
-      {/* </YProgressProvider> */}
-      {/* </ScrollContextProvider> */}
+      <FirstPage />
     </>
   );
 }
