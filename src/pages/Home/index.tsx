@@ -6,10 +6,11 @@ import { MotionBox } from "@/components/motions/Motion";
 import FirstMovement from "./Figma/FirstMovement";
 import Hero from "./Hero";
 import Lenis from "@studio-freight/lenis";
+import Gallery from "../Works";
 
 export default function FirstPage() {
-  useEffect(() => { 
-    const lenis = new Lenis({ duration: 0.95, smoothWheel: true });
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.5, smoothWheel: true });
     const raf = (time: any) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -19,7 +20,7 @@ export default function FirstPage() {
 
   return (
     <>
-      <MotionBox
+      {/* <MotionBox
         w="100px"
         bg="#6988F8"
         h="42px"
@@ -34,7 +35,10 @@ export default function FirstPage() {
         <Hero />
         <FirstMovement />
         <Box h="4000px"></Box>
-      </Flex>
+      </Flex> */}
+      <Box w="100vw" h="3000px">
+        <Gallery />
+      </Box>
     </>
   );
 }

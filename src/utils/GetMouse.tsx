@@ -11,18 +11,25 @@ export function useFollowPointer(ref: RefObject<HTMLElement>) {
       const element = ref.current!;
 
       const x = clientX - element.offsetLeft - element.offsetWidth / 2;
-      const y =
-        clientY - element.offsetTop - element.offsetHeight / 2 ;
+      const y = clientY - element.offsetTop - element.offsetHeight / 2;
       setPoint({ x, y });
     };
 
-    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("mousemove", function (e: MouseEvent) {
+      if (e.buttons == 1) {
+        handlePointerMove(e);
+      }
+    });
     window.addEventListener("scroll", () => {
       handlePointerMove;
     });
 
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("mousemove", function (e: MouseEvent) {
+        if (e.buttons == 1) {
+          handlePointerMove(e);
+        }
+      });
       window.removeEventListener("scroll", () => {
         handlePointerMove;
       });
