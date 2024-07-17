@@ -1,244 +1,393 @@
 "use client";
-// import CardNoScale from "@/components/Card";
-import CardNoScale from "@/components/CardNoScale";
+// import Card from "@/components/Card";
+import Card from "@/components/Card";
 import { MotionBox } from "@/components/motions/Motion";
 // import ColorContext from "@/utils/ColorContext";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { delay, easeIn, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  delay,
+  easeIn,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react";
 // 8f3f34
 // d8ae02
-export default function Gallery() {
+export default function Gallery({start, setStart}: {start: boolean, setStart: Dispatch<SetStateAction<boolean>>}) {
   //   const { mainColor, opacity } = useContext(ColorContext);
   const opMv = useMotionValue(0);
   const opLilF = useTransform(opMv, [0, 1], [0, 0.9]);
   const opacityT = useSpring(opLilF, { damping: 15 });
 
-  const [start, setStart] = useState<boolean>(false);
-
-  const firstElement = {
+  // const [start, setStart] = useState<boolean>(false);
+  const [hide, setHide] = useState<boolean>(false);
+  // First movement
+  const redEl = {
     start: {
-      left: "calc(90vw - 160px)",
-      top: "calc(110vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4, delay: 0.1 },
+      top: "-70vh",
+      left: "12vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.2 },
     },
     def: {
-      left: "calc(60vw - 160px)",
-      top: "calc(50vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4 },
+      top: "3vh",
+      left: "calc(50vw - 290px)",
+      scale: 0.26,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 2.1 },
+    },
+    init: {
+      scale: 0,
+      top: "10vh",
+      left: "40vw",
+      transition: { ease: "easeInOut" },
     },
   };
 
-  const secondElement = {
+  const yelEl = {
     start: {
-      left: "calc(20vw - 160px)",
-      top: "calc(90vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4, delay: 0.2 },
+      top: "-25vh",
+      right: "24vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.25 }, 
     },
     def: {
-      left: "calc(50vw - 160px)",
-      top: "calc(40vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4 },
+      top: "26vh",
+      right: "34vw",
+      scale: 0.3,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 2.15 },
+    },
+    init: {
+      scale: 0,
+      top: "30vh",
+      right: "30vw",
+      transition: { ease: "easeInOut" },
     },
   };
 
-  const thirdElement = {
+  const blueEl = {
     start: {
-      left: "calc(70vw - 160px)",
-      top: "calc(120vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4, delay: 0.15 },
+      top: "36vh",
+      right: "8vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.17 },
     },
     def: {
-      left: "calc(58vw - 160px)",
-      top: "calc(60vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4 },
+      top: "30vh",
+      right: "36vw",
+      scale: 0.3,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 2 },
+    },
+    init: {
+      scale: 0,
+      top: "32vh",
+      right: "36vw",
+      transition: { ease: "easeInOut" },
     },
   };
 
-  const fourthElement = {
-    start: {
-      left: "calc(20vw - 160px)",
-      top: "calc(180vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4, delay: 0.08 },
-    },
-    def: {
-      left: "calc(42vw - 160px)",
-      top: "calc(55vh - 200px)",
-
-      transition: { ease: "easeOut", duration: 0.4 },
-    },
-  };
+  
+  // second movement
 
   const fifthElement = {
     start: {
-      left: "calc(50vw - 160px)",
-      top: "calc(180vh - 200px)",
-      transition: { ease: "easeOut", duration: 0.4 },
+      top: "130vh",
+      left: "38vw",
+      scale: 1,
+     
+      transition: { ease: "easeInOut", duration: 0.3, delay: .68 },
     },
     def: {
-      left: "calc(42vw - 160px)",
-      top: "calc(55vh - 200px)",
-      transition: { ease: "easeOut", duration: 0.4 },
+      scale: 0.36,
+      top: "38vh",
+      left: "40vw",
+      transition: { ease: "easeInOut", duration: 0.3, delay: 2.35 },
+    },
+    init: {
+      scale: 0,
+      top: "38vh",
+      left: "40vw",
+      transition: { ease: "easeInOut" },
     },
   };
 
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       opMv.set(opacity);
-  //     }, 120);
-  //   }, [opacity]);
+  const sixthElement = {
+    start: {
+      top: "140vh",
+      left: "20vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3 , delay: 0.8},
+    },
+    def: {
+      top: "20vh",
+      left: "33vw",
+      scale: 0.26,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 2.25 },
+    },
+    init: {
+      scale: 0,
+      top: "20vh",
+      left: "33vw",
+      transition: { ease: "easeInOut" },
+    },
+  };
+
+  const seventhElement = {
+    start: {
+      top: "150vh",
+      right: "24vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.78 },
+    },
+    def: {
+      top: "26vh",
+      right: "34vw",
+      scale: 0.3,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 2.15 },
+    },
+    init: {
+      scale: 0,
+      top: "30vh",
+      right: "30vw",
+      transition: { ease: "easeInOut" },
+    },
+  };
+
+  const eightElement = {
+    start: {
+      top: "140vh",
+      right: "8vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3, delay: .72 },
+    },
+    def: {
+      top: "36vh",
+      right: "34vw",
+      scale: 0.3,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 2.2 },
+    },
+    init: {
+      scale: 0,
+      top: "32vh",
+      right: "36vw",
+      transition: { ease: "easeInOut" },
+    },
+  };
+
+  const firstElement = {
+    start: {
+      top: "120vh",
+      left: "18vw",
+      scale: 1,
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.75 },
+    },
+    def: {
+      scale: 0.3,
+      top: "18vh",
+      left: "36vw",
+      transition: { ease: "easeInOut", duration: 0.3, delay: 2.3 },
+    },
+    init: {
+      scale: 0,
+      top: "20vh",
+      left: "35vw",
+      transition: { ease: "easeInOut" },
+    },
+  };
+
+  useEffect(()=> {
+    if (start === true) {
+      setTimeout(() => {
+        setHide(true);
+      }, 1200);
+    }
+  }, [start])
 
   return (
     <>
-      <MotionBox
-        w="100vw"
-        h="100vh"
-        pos="fixed"
-        zIndex="1"
-
-        // bg="blue"
-        // style={{ opacity: opacityT }}
-        // bg={mainColor}
-      ></MotionBox>
       <Box
         className="cards_container"
         w="100%"
         h="100%"
-        px="220px"
-        // pt="800px"
-        overflow="hidden"
         zIndex="2"
+        bg="#000"
       >
-        <Flex w="100%" justifyContent="start">
+        <Flex
+          pos="relative"
+          py="30px"
+          w="100%"
+          justifyContent="space-between"
+          zIndex="11"
+          minH="200vh"
+        >
           <MotionBox
+            zIndex="11"
+            pos="absolute"
             onClick={() => {
               setStart(!start);
             }}
-            zIndex="10"
-            pos="absolute"
-            top={"calc(50vh - 200px)"}
-            left={"calc(60vw - 160px)"}
-            variants={firstElement}
+            variants={redEl}
             animate={start ? "start" : "def"}
+            initial={"init"}
           >
-            <CardNoScale
-              height={330}
-              width={290}
-              mainColor="#f4ab28"
-              pos="relative"
-            >
+            <Card height={720} width={580} mainColor="#f4ab28" pos="relative">
               <Box
                 w="100%"
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                // bgImage="/images/profilepicmine.jpg"
-                bgColor="yellow"
+                bgColor="red"
               ></Box>
-            </CardNoScale>
+            </Card>
           </MotionBox>
           <MotionBox
             zIndex="10"
             pos="absolute"
-            top={"calc(40vh - 200px)"}
-            left={"calc(50vw - 160px)"}
-            variants={secondElement}
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={yelEl}
             animate={start ? "start" : "def"}
+            initial={"init"}
           >
-            <CardNoScale
-              height={330}
-              width={250}
-              mainColor="#f4ab28"
-              pos="relative"
-            >
+            <Card height={320} width={460}  mainColor="#f4ab28" pos="relative">
               <Box
                 w="100%"
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgImage="/images/profilepicmine.jpg"
-                bgColor="white"
+                bgColor="yellow"
               ></Box>
-            </CardNoScale>
+            </Card>
           </MotionBox>
           <MotionBox
             zIndex="12"
             pos="absolute"
-            top={"calc(60vh - 200px)"}
-            left={"calc(58vw - 160px)"}
-            variants={thirdElement}
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={firstElement}
+            display={hide? "none":"block"}
             animate={start ? "start" : "def"}
+            initial={"init"}
           >
-            <CardNoScale
-              height={350}
-              width={270}
-              mainColor="#f4ab28"
-              pos="relative"
-            >
+            <Card height={560} width={400} mainColor="#f4ab28" pos="relative">
               <Box
                 w="100%"
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                // bgImage="/images/profilepicmine.jpg"
-                bgColor="green"
+                bgColor="#a9a9a9"
               ></Box>
-            </CardNoScale>
+            </Card>
           </MotionBox>
           <MotionBox
             zIndex="10"
             pos="absolute"
-            top={"calc(55vh - 200px)"}
-            left={"calc(42vw - 160px)"}
-            variants={fourthElement}
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={blueEl}
             animate={start ? "start" : "def"}
+            initial={"init"}
           >
-            <CardNoScale
-              height={340}
-              width={240}
-              mainColor="#f4ab28"
-              pos="relative"
-            >
+            <Card height={400} width={580} mainColor="#f4ab28" pos="relative">
               <Box
                 w="100%"
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                // bgImage="/images/profilepicmine.jpg"
-                bgColor="red"
+                bgColor="blue"
               ></Box>
-            </CardNoScale>
+            </Card>
           </MotionBox>
           <MotionBox
-            zIndex="11"
+            zIndex="12"
             pos="absolute"
-            top={"calc(70vh - 200px)"}
-            left={"calc(50vw - 160px)"}
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={fifthElement}
+            animate={start ? "start" : "def"}
+            initial={"init"}
+            display={hide? "none":"block"}
+         
           >
-            <CardNoScale
-              height={380}
-              width={300}
-              mainColor="#f4ab28"
-              pos="relative"
-            >
+            <Card height={400} width={300} mainColor="#f4ab28" pos="relative">
               <Box
                 w="100%"
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                // bgImage="/images/profilepicmine.jpg"
-                bgColor="white"
+                bgColor="#a9a9a9"
               ></Box>
-            </CardNoScale>
+            </Card>
+          </MotionBox>
+          <MotionBox
+            zIndex="10"
+            pos="absolute"
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={sixthElement}
+            display={hide? "none":"block"}
+            animate={start ? "start" : "def"}
+            initial={"init"}
+          >
+            <Card height={420} width={440}  mainColor="#f4ab28" pos="relative">
+              <Box
+                w="100%"
+                h="100%"
+                bgSize="cover"
+                bgPosition="center"
+                bgColor="#a9a9a9"
+              ></Box>
+            </Card>
+          </MotionBox>
+          <MotionBox
+            zIndex="12"
+            pos="absolute"
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={seventhElement}
+            display={hide? "none":"block"}
+            animate={start ? "start" : "def"}
+            initial={"init"}
+          >
+            <Card height={500} width={380} mainColor="#f4ab28" pos="relative">
+              <Box
+                w="100%"
+                h="100%"
+                bgSize="cover"
+                bgPosition="center"
+                bgColor="#a9a9a9"
+              ></Box>
+            </Card>
+          </MotionBox>
+          <MotionBox
+            zIndex="10"
+            pos="absolute"
+            onClick={() => {
+              setStart(!start);
+            }}
+            variants={eightElement}
+            display={hide? "none":"block"}
+            animate={start ? "start" : "def"}
+            initial={"init"}
+          >
+            <Card height={380} width={580} mainColor="#f4ab28" pos="relative">
+              <Box
+                w="100%"
+                h="100%"
+                bgSize="cover"
+                bgPosition="center"
+                bgColor="#a9a9a9"
+              ></Box>
+            </Card>
           </MotionBox>
         </Flex>
+        
       </Box>
     </>
   );

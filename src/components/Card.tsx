@@ -21,7 +21,7 @@ interface TiltCardInterface extends BoxProps {
   subtitle?: string;
 }
 
-export default function Item({
+export default function Card({
   height,
   width,
   title,
@@ -33,11 +33,11 @@ export default function Item({
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.9", "start 0.5"],
+    // offset: ["start 1", "start 0"],
   });
   //   const { setMainColor, setOpacity, opacity } = useContext(ColorContext);
   // const y = useTransform(scrollYProgress, [0, 1], ["0px", "-170px"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.22, 0.78, 1], [1, 1.1, 1.1, 1]);
   const sd = useTransform(scrollYProgress, [0, 1], ["115%", "100%"]);
   const opacityT = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
   const colorMv = useMotionValue(0);
@@ -54,10 +54,10 @@ export default function Item({
   const cardY = useMotionValue(0);
   const xSpring = useSpring(cardX, springConfig);
   const ySpring = useSpring(cardY, springConfig);
-  const rotateX = useTransform(ySpring, [-0.5, 0.5], [3.2, -3.2]);
-  const rotateY = useTransform(xSpring, [-0.5, 0.5], [-3.2, 3.2]);
-  const cardRotateX = useTransform(ySpring, [-0.5, 0.5], [3.2, -3.2]);
-  const cardRotateY = useTransform(xSpring, [-0.5, 0.5], [-3.2, 3.2]);
+  const rotateX = useTransform(ySpring, [-0.4, 0.4], [2.2, -2.2]);
+  const rotateY = useTransform(xSpring, [-0.4, 0.4], [-2.2, 2.2]);
+  const cardRotateX = useTransform(ySpring, [-0.4, 0.4], [2.2, -2.2]);
+  const cardRotateY = useTransform(xSpring, [-0.4, 0.4], [-2.2, 2.2]);
 
   const handleMouseMove = (e: any) => {
     const rect = e.target.getBoundingClientRect();
@@ -92,7 +92,7 @@ export default function Item({
   return (
     <MotionBox
       style={{
-        scale: scale,
+        // scale: scale,
         // y,
         position: "relative",
         width: width,
@@ -101,6 +101,7 @@ export default function Item({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        cursor:"pointer"
       }}
     >
       <MotionBox
@@ -123,6 +124,7 @@ export default function Item({
       >
         <MotionBox
           style={{
+            paddingTop:"40px",
             backgroundColor: "#141414",
             position: "absolute",
             transformStyle: "preserve-3d",
@@ -138,8 +140,9 @@ export default function Item({
         ></MotionBox>
         <MotionBox
           style={{
+            paddingTop:"40px",
             position: "absolute",
-            backgroundColor: mainColor,
+            // backgroundColor: mainColor,
             width: width + 2,
             height: height + 2,
             transformStyle: "preserve-3d",
@@ -147,11 +150,12 @@ export default function Item({
             rotateX: cardRotateX,
             rotateY: cardRotateY,
             zIndex: 4,
-            opacity: opacityT,
+            // opacity: opacityT,
           }}
         ></MotionBox>
         <MotionBox
           style={{
+            paddingTop:"40px",
             position: "relative",
             width: width,
             height: height,

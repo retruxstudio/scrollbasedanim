@@ -1,7 +1,7 @@
 "use client";
 import MouseBg from "@/components/MouseBg";
 import { Box, Flex } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MotionBox } from "@/components/motions/Motion";
 import FirstMovement from "./Figma/FirstMovement";
 import Hero from "./Hero";
@@ -9,8 +9,15 @@ import Lenis from "@studio-freight/lenis";
 import Gallery from "../Works";
 
 export default function FirstPage() {
+
+  const [start, setStart] = useState<boolean>(false)
+
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.5, smoothWheel: true });
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,
+      infinite: true,
+    });
     const raf = (time: any) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -20,24 +27,13 @@ export default function FirstPage() {
 
   return (
     <>
-      {/* <MotionBox
-        w="100px"
-        bg="#6988F8"
-        h="42px"
-        pos="fixed"
-        top="0px"
-        left="0px"
-        zIndex="999"
-        style={{ width: "100%" }}
-      ></MotionBox>
-      <Flex flexDir="column" alignItems="center" w="100%">
-        <MouseBg />
-        <Hero />
-        <FirstMovement />
-        <Box h="4000px"></Box>
-      </Flex> */}
-      <Box w="100vw" h="3000px">
-        <Gallery />
+      <Box bg="none">
+        <Box pos="relative" zIndex="1">
+          <Gallery start={start} setStart={setStart}/>
+        </Box>
+        <Box pos="relative" zIndex="2" h="100vh">
+          <Gallery start={start} setStart={setStart}/>
+        </Box>
       </Box>
     </>
   );
