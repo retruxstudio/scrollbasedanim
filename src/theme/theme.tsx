@@ -1,7 +1,8 @@
 import { ThemeConfig, extendTheme } from "@chakra-ui/react";
-import { Inter } from "next/font/google";
+import Text from "./Text";
+// import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -21,10 +22,11 @@ const breakpoints = {
 const theme = extendTheme({
   breakpoints,
   config,
-  fonts: {
-    heading: inter.style.fontFamily,
-    body: inter.style.fontFamily,
-  },
+  // fonts: {
+  //   heading: inter.style.fontFamily,
+  //   body: inter.style.fontFamily,
+  // },
+  
   styles: {
     global: (props: any) => ({
       body: {
@@ -32,7 +34,9 @@ const theme = extendTheme({
       },
     }),
   },
-  components: {},
+  components: {
+    Text,
+  },
 });
 
 export default theme;

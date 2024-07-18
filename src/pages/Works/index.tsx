@@ -31,15 +31,15 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
       transition: { ease: "easeInOut", duration: 0.3, delay: 0.2 },
     },
     def: {
-      top: "3vh",
+      top: "2vh",
       left: "calc(50vw - 290px)",
-      scale: 0.26,
-      transition: { ease: "easeInOut", duration: 0.2, delay: 2.1 },
+      scale: 0.36,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 0.87 },
     },
     init: {
       scale: 0,
-      top: "10vh",
-      left: "40vw",
+      top: "2vh",
+      left: "calc(50vw - 290px)",
       transition: { ease: "easeInOut" },
     },
   };
@@ -54,8 +54,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
     def: {
       top: "26vh",
       right: "34vw",
-      scale: 0.3,
-      transition: { ease: "easeInOut", duration: 0.2, delay: 2.15 },
+      scale: 0.4,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 0.83 },
     },
     init: {
       scale: 0,
@@ -75,8 +75,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
     def: {
       top: "30vh",
       right: "36vw",
-      scale: 0.3,
-      transition: { ease: "easeInOut", duration: 0.2, delay: 2 },
+      scale: 0.4,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 0.86 },
     },
     init: {
       scale: 0,
@@ -98,10 +98,10 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
       transition: { ease: "easeInOut", duration: 0.3, delay: .68 },
     },
     def: {
-      scale: 0.36,
+      scale: 0.46,
       top: "38vh",
       left: "40vw",
-      transition: { ease: "easeInOut", duration: 0.3, delay: 2.35 },
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.88 },
     },
     init: {
       scale: 0,
@@ -121,8 +121,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
     def: {
       top: "20vh",
       left: "33vw",
-      scale: 0.26,
-      transition: { ease: "easeInOut", duration: 0.2, delay: 2.25 },
+      scale: 0.36,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 0.82 },
     },
     init: {
       scale: 0,
@@ -142,8 +142,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
     def: {
       top: "26vh",
       right: "34vw",
-      scale: 0.3,
-      transition: { ease: "easeInOut", duration: 0.2, delay: 2.15 },
+      scale: 0.4,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 0.89 },
     },
     init: {
       scale: 0,
@@ -163,8 +163,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
     def: {
       top: "36vh",
       right: "34vw",
-      scale: 0.3,
-      transition: { ease: "easeInOut", duration: 0.2, delay: 2.2 },
+      scale: 0.4,
+      transition: { ease: "easeInOut", duration: 0.2, delay: 0.94 },
     },
     init: {
       scale: 0,
@@ -182,10 +182,10 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
       transition: { ease: "easeInOut", duration: 0.3, delay: 0.75 },
     },
     def: {
-      scale: 0.3,
+      scale: 0.4,
       top: "18vh",
       left: "36vw",
-      transition: { ease: "easeInOut", duration: 0.3, delay: 2.3 },
+      transition: { ease: "easeInOut", duration: 0.3, delay: 0.9 },
     },
     init: {
       scale: 0,
@@ -194,6 +194,12 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
       transition: { ease: "easeInOut" },
     },
   };
+
+  useEffect(()=> {{
+    setTimeout(()=> {
+      setStart(true);
+    }, 2600)
+  }}, [])
 
   useEffect(()=> {
     if (start === true) {
@@ -236,7 +242,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="red"
+                // bgColor="red"
+                bgImage="/images/bloodrose.jpg"
               ></Box>
             </Card>
           </MotionBox>
@@ -256,7 +263,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="yellow"
+                // bgColor="yellow"
+                bgImage="/images/sleephay.jpg"
               ></Box>
             </Card>
           </MotionBox>
@@ -277,7 +285,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="#a9a9a9"
+                // bgColor="#a9a9a9"
+                bgImage="/images/statue.jpg"
               ></Box>
             </Card>
           </MotionBox>
@@ -297,7 +306,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="blue"
+                // bgColor="blue"
+                bgImage="/images/starrynight.jpg"
               ></Box>
             </Card>
           </MotionBox>
@@ -319,7 +329,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="#a9a9a9"
+                // bgColor="#a9a9a9"
+                bgImage="/images/skelly.jpg"
               ></Box>
             </Card>
           </MotionBox>
@@ -340,7 +351,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="#a9a9a9"
+                // bgColor="#a9a9a9"
+                bgImage="images/sunflower.jpg"
               ></Box>
             </Card>
           </MotionBox>
@@ -361,7 +373,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="#a9a9a9"
+                // bgColor="#a9a9a9"
+                bgImage="/images/villag.png"
               ></Box>
             </Card>
           </MotionBox>
@@ -382,7 +395,8 @@ export default function Gallery({start, setStart}: {start: boolean, setStart: Di
                 h="100%"
                 bgSize="cover"
                 bgPosition="center"
-                bgColor="#a9a9a9"
+                // bgColor="#a9a9a9"
+                bgImage="/images/greenwheat.jpg"
               ></Box>
             </Card>
           </MotionBox>
